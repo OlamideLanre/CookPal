@@ -43,7 +43,7 @@ function App() {
         />
       </form>
       {/* display search results */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-4 gap-10">
         {results?.map((meal) => (
           <MealCard key={meal.idMeal} meal={meal} />
         ))}
