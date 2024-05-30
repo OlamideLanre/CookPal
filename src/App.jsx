@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { MealCard } from "./components/MealCard";
 import axios from "axios";
+import ViewRecipie from "./pages/ViewRecipe";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -30,8 +31,15 @@ function App() {
   }, [searchTerm]);
   return (
     <>
-      <div className="container mx-auto p-4">
-        <h1 className="font-bold">Meal Search</h1>
+      <div className="container mx-auto pb-2">
+        <h1
+          className="font-bold text-3xl"
+          style={{
+            color: "#F8E06C",
+          }}
+        >
+          CookPal
+        </h1>
       </div>
       <form>
         <input
@@ -39,9 +47,10 @@ function App() {
           placeholder="find meal..."
           value={searchTerm}
           onChange={handleSearchTerm}
-          className="rounded border-blue-400 py-2 px-4 border-solid"
+          className="rounded border-gray-400 py-2 px-28 border-solid outline-none border"
         />
       </form>
+
       {/* display search results */}
       <div className="grid grid-cols-4 gap-10">
         {results?.map((meal) => (
