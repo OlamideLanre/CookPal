@@ -8,6 +8,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [errorMess, setError] = useState();
 
   const handleSearchTerm = (e) => {
     setSearchTerm(e.target.value);
@@ -22,9 +23,21 @@ function App() {
         );
 
         setResults(response.data.meals || []);
+        if (results != []) {
+          setLoading(false);
+        } else {
+        }
         console.log(results);
       } catch (error) {
         console.log("error fetching ", error);
+        setLoading(false);
+        setError("Ops! An error occured.");
+        if (error.message == "Network Error") {
+          setError(
+            "Ops! something went wrong." +
+              " Check your internet connection and try again!"
+          );
+        }
       }
     };
     fetchMeal();
@@ -52,11 +65,16 @@ function App() {
       </form>
 
       {/* display search results */}
-      <div className="grid grid-cols-4 gap-10">
-        {results?.map((meal) => (
-          <MealCard key={meal.idMeal} meal={meal} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="text-xl mt-52 ">Loading...</div>
+      ) : (
+        <div className="grid grid-cols-4 gap-10">
+          {results?.map((meal) => (
+            <MealCard key={meal.idMeal} meal={meal} />
+          ))}
+        </div>
+      )}
+      {errorMess && <div className="text-xl mt-52 ">{errorMess}</div>}
     </>
   );
 }
