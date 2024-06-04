@@ -21,7 +21,7 @@ function App() {
         const response = await axios.get(
           `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`
         );
-
+        console.log(response);
         setResults(response.data.meals || []);
         if (results != []) {
           setLoading(false);
@@ -31,7 +31,7 @@ function App() {
       } catch (error) {
         console.log("error fetching ", error);
         setLoading(false);
-        setError("Ops! An error occured.");
+        setError("Ops! An error occured. Try again");
         if (error.message == "Network Error") {
           setError(
             "Ops! something went wrong." +
@@ -69,9 +69,12 @@ function App() {
         <div className="text-xl mt-52 ">Loading...</div>
       ) : (
         <div className="grid grid-cols-4 gap-10">
-          {results?.map((meal) => (
-            <MealCard key={meal.idMeal} meal={meal} />
-          ))}
+          {results?.map(
+            (meal) => (
+              <MealCard key={meal.idMeal} meal={meal} />
+            )
+            // console.log(meal.idMeal)
+          )}
         </div>
       )}
       {errorMess && <div className="text-xl mt-52 ">{errorMess}</div>}

@@ -28,7 +28,8 @@ export function MealCard({ meal }) {
           />
         </div>
         <Link
-          to="/details"
+          key={meal.idMeal}
+          to={`/details/${meal.idMeal}`}
           className="font-bold text-xl"
           style={{
             color: "#0F4122",

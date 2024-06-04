@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/details",
+    path: "/details/:mealID",
     element: <ViewRecipie />,
   },
 ]);
