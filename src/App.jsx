@@ -12,22 +12,19 @@ function App() {
 
   const handleSearchTerm = (e) => {
     setSearchTerm(e.target.value);
-    console.log(searchTerm);
   };
-  // useEffect hook for
   useEffect(() => {
     const fetchMeal = async () => {
       try {
         const response = await axios.get(
           `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`
         );
-        console.log(response);
         setResults(response.data.meals || []);
         if (results != []) {
           setLoading(false);
         } else {
         }
-        console.log(results);
+        // console.log(results);
       } catch (error) {
         console.log("error fetching ", error);
         setLoading(false);
