@@ -33,7 +33,6 @@ function ViewRecipie() {
       console.log(error);
     }
   };
-  // FetchRecipeDetails();
 
   useEffect(() => {
     FetchRecipeDetails();
