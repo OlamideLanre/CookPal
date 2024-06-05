@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { MealCard } from "./components/MealCard";
 import axios from "axios";
-import ViewRecipie from "./pages/ViewRecipe";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,7 +27,7 @@ function App() {
       } catch (error) {
         console.log("error fetching ", error);
         setLoading(false);
-        setError("Ops! An error occured. Try again");
+        setError("Ops! Something went wrong. Try again");
         if (error.message == "Network Error") {
           setError(
             "Ops! something went wrong." +
@@ -41,7 +40,7 @@ function App() {
   }, [searchTerm]);
   return (
     <>
-      <div className="container mx-auto pb-2">
+      <div className="container mx-auto pb-2 mt-4">
         <h1
           className="font-bold text-3xl"
           style={{
@@ -57,7 +56,7 @@ function App() {
           placeholder="find meal..."
           value={searchTerm}
           onChange={handleSearchTerm}
-          className="rounded border-gray-400 py-2 px-28 border-solid outline-none border"
+          className="rounded-xl border-gray-400 py-2 px-40 border-solid outline-none border"
         />
       </form>
 
