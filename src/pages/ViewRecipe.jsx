@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 function ViewRecipie() {
   const idMeal = useParams();
   const [ingredients, setIngredients] = useState([]);
+  const [mealDetails, setMealDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMess, setError] = useState();
 
@@ -19,10 +20,7 @@ function ViewRecipie() {
         setLoading(false);
         setError(false);
         const meal = response.data.meals[0];
-        const Display_Instructions = document.getElementsByClassName("ins");
-        const mealName = document.getElementsByClassName("meal");
-        Display_Instructions[0].innerHTML = meal.strInstructions;
-        mealName[0].innerHTML = meal.strMeal;
+        setMealDetails(meal);
         const ingredientsList = [];
         for (let i = 1; i <= 20; i++) {
           const ingredient = meal[`strIngredient${i}`];
@@ -34,16 +32,14 @@ function ViewRecipie() {
         setIngredients(ingredientsList);
       }
     } catch (error) {
-      if (error) {
-        console.log("error fetching: ", error);
-        setLoading(false);
-        // setError("Ops! Something went wrong. Try again");
-        // if (error.message == "Network Error") {
-        //   setError(
-        //     "Ops! something went wrong." +
-        //       " Check your internet connection and try again!"
-        //   );
-        // }
+      console.log("error fetching: ", error);
+      setLoading(false);
+      setError("Ops! Something went wrong. Try again");
+      if (error.message == "Network Error") {
+        setError(
+          "Ops! something went wrong." +
+            " Check your internet connection and try again!"
+        );
       }
     }
   };
@@ -54,14 +50,14 @@ function ViewRecipie() {
 
   return (
     <>
-      <h1 className="meal font-bold text-3xl"></h1>
+      <h1 className="meal font-bold text-3xl">{mealDetails.strMeal}</h1>
       {loading ? (
         <div className="text-xl mt-52">Fetching recipe...</div>
       ) : (
         <div>
           <div className="mt-3">
             <h3 className="font-bold text-xl text-start">Instructions</h3>
-            <p className="ins text-justify"></p>
+            <p className="ins text-justify">{mealDetails.strInstructions}</p>
           </div>
 
           <div className="text-start mt-2">
@@ -75,7 +71,7 @@ function ViewRecipie() {
         </div>
       )}
 
-      {/* {errorMess && <div className="text-xl mt-52">{errorMess}</div>} */}
+      {errorMess && <div className="text-xl mt-52">{errorMess}</div>}
     </>
   );
 }
