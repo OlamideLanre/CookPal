@@ -4,7 +4,7 @@ export function MealCard({ meal }) {
   return (
     <>
       <div
-        className="border rounded-md p4 mt-10 ml-5"
+        className="border rounded-md p4 mt-10 ml-5 mealImage"
         style={{
           borderWidth: "2px",
           borderColor: "#A9C471",

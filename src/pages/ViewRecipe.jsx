@@ -68,6 +68,12 @@ function ViewRecipie() {
               </span>
             ))}
           </div>
+
+          <div className="text-start mt-2 underline">
+            <a href={mealDetails.strYoutube} className="text-m font-semibold">
+              Watch recipe tutorial
+            </a>
+          </div>
         </div>
       )}
 
