@@ -49,17 +49,17 @@ function App() {
         >
           CookPal
         </h1>
-      </div>
-      <form>
-        <input
-          type="text"
-          placeholder="find meal..."
-          value={searchTerm}
-          onChange={handleSearchTerm}
-          className="rounded-xl border-gray-400 py-2 px-40 border-solid outline-none border"
-        />
-      </form>
 
+        <form>
+          <input
+            type="text"
+            placeholder="find meal..."
+            value={searchTerm}
+            onChange={handleSearchTerm}
+            className="rounded-xl border-gray-400 py-2 pl-2 pr-40 border-solid outline-none border"
+          />
+        </form>
+      </div>
       {/* display search results */}
       {loading ? (
         <div className="text-xl mt-52 ">Loading...</div>
