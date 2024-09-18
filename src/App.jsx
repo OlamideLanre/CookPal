@@ -53,10 +53,10 @@ function App() {
         <form>
           <input
             type="text"
-            placeholder="find meal..."
+            placeholder="Find meal"
             value={searchTerm}
             onChange={handleSearchTerm}
-            className="rounded-xl border-gray-400 py-2 pl-2 pr-40 border-solid outline-none border"
+            className="w-full max-w-xs rounded-xl border-gray-400 py-2 pl-2 border-solid outline-none border "
           />
         </form>
       </div>
@@ -64,7 +64,7 @@ function App() {
       {loading ? (
         <div className="text-xl mt-52 ">Loading...</div>
       ) : (
-        <div className="data">
+        <div className="data p-4">
           {results?.map(
             (meal) => (
               <MealCard key={meal.idMeal} meal={meal} />
@@ -74,7 +74,7 @@ function App() {
         </div>
       )}
 
-      {errorMess && <div className="text-xl mt-52 ">{errorMess}</div>}
+      {errorMess && <div className="mt-52 p-1 ">{errorMess}</div>}
     </>
   );
 }
