@@ -64,7 +64,7 @@ function App() {
       {loading ? (
         <div className="text-xl mt-52 ">Loading...</div>
       ) : (
-        <div className="grid grid-cols-4 gap-10">
+        <div className="data">
           {results?.map(
             (meal) => (
               <MealCard key={meal.idMeal} meal={meal} />
@@ -73,6 +73,7 @@ function App() {
           )}
         </div>
       )}
+
       {errorMess && <div className="text-xl mt-52 ">{errorMess}</div>}
     </>
   );

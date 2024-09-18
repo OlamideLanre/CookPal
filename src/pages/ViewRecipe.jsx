@@ -50,32 +50,35 @@ function ViewRecipie() {
 
   return (
     <>
-      <h1 className="meal font-bold text-3xl">{mealDetails.strMeal}</h1>
-      {loading ? (
-        <div className="text-xl mt-52">Fetching recipe...</div>
-      ) : (
-        <div>
-          <div className="mt-3">
-            <h3 className="font-bold text-xl text-start">Instructions</h3>
-            <p className="ins text-justify">{mealDetails.strInstructions}</p>
-          </div>
+      <div className="container p-10">
+        <h1 className="meal font-bold text-3xl">{mealDetails.strMeal}</h1>
+        {loading ? (
+          <div className="text-xl mt-52">Fetching recipe...</div>
+        ) : (
+          <div>
+            <div className="mt-3">
+              <h3 className="font-bold text-xl text-start">Instructions</h3>
+              <p className="ins text-justify">{mealDetails.strInstructions}</p>
+            </div>
 
-          <div className="text-start mt-2">
-            <span className="text-lg font-semibold">Ingredients: </span> <br />
-            {ingredients.map((ingredient, index) => (
-              <span key={index} className="block ingredient-list">
-                {ingredient}
-              </span>
-            ))}
-          </div>
+            <div className="text-start mt-2">
+              <span className="text-lg font-semibold">Ingredients: </span>{" "}
+              <br />
+              {ingredients.map((ingredient, index) => (
+                <span key={index} className="block ingredient-list">
+                  {ingredient}
+                </span>
+              ))}
+            </div>
 
-          <div className="text-start mt-2 underline">
-            <a href={mealDetails.strYoutube} className="text-m font-semibold">
-              Watch recipe tutorial
-            </a>
+            <div className="text-start mt-2 underline">
+              <a href={mealDetails.strYoutube} className="text-m font-semibold">
+                Watch recipe tutorial
+              </a>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {errorMess && <div className="text-xl mt-52">{errorMess}</div>}
     </>
