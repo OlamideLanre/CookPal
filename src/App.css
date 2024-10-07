@@ -1,11 +1,60 @@
  #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
   padding: 0;
   text-align: center;
 }
 .data{
+  max-width: 1280px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: .8em;
+}
+.card{
+  /* transition: 300ms; */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.icons{
+  display: flex;
+  /* flex-direction: column; */
+  gap: 8px;
+  padding: 0 1rem;
+  justify-content: flex-end;
+}
+.icons div{
+  /* background-color: aqua; */
+  width: 30px;
+  height: 30px;
+  border-radius: 2rem;
+  align-content: center;
+  cursor: pointer;
+  transition: 400ms;
+}
+.icons .fav:hover{
+transform: scale(1.2) ;
+background-color: red;
+color: white;
+  /* background-color: #0F4122 */
+}
+.icons .bookmark:hover {
+  transform: scale(1.2);
+  background-color: rgb(49, 109, 231);
+  color: white;
+}
+.pages > a{
+  margin-right: 10px;
+  text-decoration: underline;
+}
+.nav-container{
+  width: 100%;
+  /* background-color: #E6F2F4; */
+}
+nav{
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  overflow: hidden;
+  /* border-bottom:solid 1px #ffff00 ; */
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
