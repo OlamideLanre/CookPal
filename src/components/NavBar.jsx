@@ -1,6 +1,9 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-export function NavBar() {
+export function NavBar({ searchTerm, setSearchTerm }) {
+  const handleSearchTerm = (e) => {
+    setSearchTerm(e.target.value);
+  };
   return (
     <>
       <nav className="">
@@ -19,8 +22,10 @@ export function NavBar() {
               type="text"
               className="py-2 pr-20 pl-5 mr-3 outline-none border border-gray-300 rounded-md"
               placeholder="find recipe..."
+              value={searchTerm}
+              onChange={handleSearchTerm}
             />
-            <SearchOutlined className="cursor-pointer" />
+            {/* <SearchOutlined className="cursor-pointer" /> */}
           </div>
           <div className="pages">
             <Link>favorites</Link>
