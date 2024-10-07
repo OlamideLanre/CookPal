@@ -1,29 +1,27 @@
  #root {
-  /* max-width: 1280px; */
-  /* margin: 0 auto; */
   padding: 0;
   text-align: center;
 }
+.container,
 .data{
-  max-width: 1280px;
-  margin: 0 auto;
+    max-width: 1280px;
+      margin: 0 auto;
+}
+.data{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: .8em;
 }
 .card{
-  /* transition: 300ms; */
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .icons{
   display: flex;
-  /* flex-direction: column; */
   gap: 8px;
   padding: 0 1rem;
   justify-content: flex-end;
 }
 .icons div{
-  /* background-color: aqua; */
   width: 30px;
   height: 30px;
   border-radius: 2rem;
@@ -35,7 +33,6 @@
 transform: scale(1.2) ;
 background-color: red;
 color: white;
-  /* background-color: #0F4122 */
 }
 .icons .bookmark:hover {
   transform: scale(1.2);
@@ -47,14 +44,36 @@ color: white;
   text-decoration: underline;
 }
 .nav-container{
-  width: 100%;
-  /* background-color: #E6F2F4; */
+  width: 100%;  
 }
 nav{
   position: sticky;
   top: 0;
   background-color: #fff;
   overflow: hidden;
-  /* border-bottom:solid 1px #ffff00 ; */
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
+.instructions-div{
+  max-width: 700px;
+}
+.ingredients-div .ingredient-list{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: white;
+}
+.img-header img{
+  width: 200px;
+}
+
+@media (max-width:600px) {
+  .ingredients-div{
+    flex-direction: column;
+    align-content: center;
+  }
+  .img-header{
+    margin: 0 auto;
+  }
+  .img-header img{
+    width: 100%;
+  }
+}
+

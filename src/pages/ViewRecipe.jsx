@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { LoadingOutlined } from "@ant-design/icons";
 
 function ViewRecipie() {
   const idMeal = useParams();
@@ -50,28 +51,46 @@ function ViewRecipie() {
 
   return (
     <>
-      <div className="container p-10">
+      <div className="container p-10 mx-auto">
         <h1 className="meal font-bold text-3xl">{mealDetails.strMeal}</h1>
         {loading ? (
-          <div className="text-xl mt-52">Fetching recipe...</div>
+          <div className="text-xl mt-60">
+            <LoadingOutlined />
+          </div>
         ) : (
-          <div>
-            <div className="mt-3">
-              <h3 className="font-bold text-xl text-start">Instructions</h3>
-              <p className="ins text-justify">{mealDetails.strInstructions}</p>
+          <div className="container">
+            <div className="flex gap-7 flex-wrap">
+              <div className="img-header mt-2">
+                <img
+                  src={mealDetails.strMealThumb}
+                  alt={mealDetails.strMeal}
+                  // width={"200px"}
+                  className="rounded-xl"
+                />
+              </div>
+              <div className="mt-3 instructions-div">
+                <h3 className="font-bold text-xl text-start text-yellow-500">
+                  Instructions
+                </h3>
+                <p className="ins text-justify">
+                  {mealDetails.strInstructions}
+                </p>
+              </div>
             </div>
 
-            <div className="text-start mt-2">
-              <span className="text-lg font-semibold">Ingredients: </span>{" "}
-              <br />
+            <div className="flex flex-wrap gap-5 mt-3 ingredients-div">
+              <p className="text-lg font-semibold">Ingredients: </p>
               {ingredients.map((ingredient, index) => (
-                <span key={index} className="block ingredient-list">
+                <span
+                  key={index}
+                  className=" border py-2 rounded-xl ingredient-list w-40"
+                >
                   {ingredient}
                 </span>
               ))}
             </div>
 
-            <div className="text-start mt-2 underline">
+            <div className="text-start mt-3 underline text-yellow-500">
               <a href={mealDetails.strYoutube} className="text-m font-semibold">
                 Watch recipe tutorial
               </a>
