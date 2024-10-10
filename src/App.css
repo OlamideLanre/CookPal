@@ -1,11 +1,12 @@
  #root {
   padding: 0;
-  text-align: center;
+  /* text-align: center; */
 }
 .container,
 .data{
     max-width: 1280px;
-      margin: 0 auto;
+    margin: 0 auto;
+    text-align: center;
 }
 .data{
   display: grid;
@@ -41,10 +42,10 @@ color: white;
 }
 .pages > a{
   margin-right: 10px;
-  text-decoration: underline;
 }
 .nav-container{
   width: 100%;  
+  justify-content: space-around;
 }
 nav{
   position: sticky;
@@ -63,7 +64,25 @@ nav{
 .img-header img{
   width: 200px;
 }
-
+.link{
+    --tw-text-opacity: 1;
+      background-color: rgb(234 179 8 / var(--tw-text-opacity));
+      padding: .2rem .7rem;
+      border-radius: 1rem;
+}
+.pages{
+  transition: 1s;
+}
+.pages div:hover{
+  transform: scale(1.1);
+}
+.error{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+}
 @media (max-width:600px) {
   .ingredients-div{
     flex-direction: column;
@@ -74,6 +93,9 @@ nav{
   }
   .img-header img{
     width: 100%;
+  }
+  .nav-container{
+      justify-content: start;
   }
 }
 

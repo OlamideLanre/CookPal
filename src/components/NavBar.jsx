@@ -7,11 +7,11 @@ export function NavBar({ searchTerm, setSearchTerm }) {
   return (
     <>
       <nav className="">
-        <div className="flex justify-around items-center p-4 nav-container">
+        <div className="flex flex-wrap p-4 nav-container">
           <div className="logo flex gap-3">
             <img src="cook-book.png" alt="logo" srcset="" width={"40px"} />
             <div>
-              <h2 className="text-3xl font-bold tracking-wider text-yellow-500">
+              <h2 className="text-3xl font-bold tracking-wider text-yellow-500 mr-3">
                 CookPal
               </h2>
             </div>
@@ -27,9 +27,17 @@ export function NavBar({ searchTerm, setSearchTerm }) {
             />
             {/* <SearchOutlined className="cursor-pointer" /> */}
           </div>
-          <div className="pages">
-            <Link>favorites</Link>
-            <Link>bookmark</Link>
+          <div className="pages flex gap-5 items-center">
+            <div>
+              <Link className="link" to="/favorites">
+                favorites
+              </Link>
+            </div>
+            <div>
+              <Link className="link" to="/bookmark">
+                bookmark
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
