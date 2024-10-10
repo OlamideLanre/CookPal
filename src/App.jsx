@@ -10,6 +10,7 @@ function App() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMess, setError] = useState();
+  const [availRecipe, setAvailRecipe] = useState();
 
   useEffect(() => {
     const fetchMeal = async () => {
@@ -29,10 +30,7 @@ function App() {
         setLoading(false);
         setError("Ops! Something went wrong. Try again");
         if (error.message == "Network Error") {
-          setError(
-            "Ops! something went wrong." +
-              " Check your internet connection and try again!"
-          );
+          setError(" Check your internet connection and try again");
         }
       }
     };
@@ -43,20 +41,20 @@ function App() {
       <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       {/* display search results */}
       {loading ? (
-        <div className="text-xl mt-52 ">
+        <div className="text-xl mt-52 text-center">
           <LoadingOutlined />
         </div>
       ) : (
         <div className="data p-4">
-          {results.length > 0 ? (
-            results?.map((meal) => <MealCard key={meal.idMeal} meal={meal} />)
-          ) : (
-            <div className="mt-52 col-span-3">Meal recipe unavailable</div>
-          )}
+          {results.length > 0
+            ? results?.map((meal) => <MealCard key={meal.idMeal} meal={meal} />)
+            : availRecipe && (
+                <div className="mt-52 col-span-3">Meal recipe unavailable</div>
+              )}
         </div>
       )}
 
-      {errorMess && <div className="mt-52 p-1 ">{errorMess}</div>}
+      {errorMess && <div className="mt-52 text-center ">{errorMess}</div>}
     </>
   );
 }

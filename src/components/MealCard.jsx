@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { HeartOutlined, BookOutlined, PlusOutlined } from "@ant-design/icons";
+import { HeartOutlined, PlusOutlined } from "@ant-design/icons";
 
 export function MealCard({ meal }) {
   return (

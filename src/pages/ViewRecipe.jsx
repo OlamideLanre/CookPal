@@ -1,7 +1,11 @@
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { LoadingOutlined } from "@ant-design/icons";
+import {
+  ArrowLeftOutlined,
+  HomeFilled,
+  LoadingOutlined,
+} from "@ant-design/icons";
 
 function ViewRecipie() {
   const idMeal = useParams();
@@ -51,6 +55,14 @@ function ViewRecipie() {
 
   return (
     <>
+      <div className="mt-4">
+        <Link to="/" className="bg-yellow-500 p-2 ml-3 rounded-sm">
+          <HomeFilled className="items-start" />
+        </Link>
+
+        {/* <img src="cook-book.png" alt="logo" srcset="" width={"40px"} /> */}
+      </div>
+
       <div className="container p-10 mx-auto">
         <h1 className="meal font-bold text-3xl">{mealDetails.strMeal}</h1>
         {loading ? (
