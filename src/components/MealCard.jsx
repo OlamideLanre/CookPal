@@ -6,10 +6,30 @@ import "react-toastify/dist/ReactToastify.css";
 
 export function MealCard({ meal }) {
   const Favorite_Recipes = [];
+  const [userID, setUserID] = useState(null);
   const [favorites, setFavorites] = useState(() => {
-    const savedRecipes = localStorage.getItem("favRecipes");
-    return savedRecipes ? JSON.parse(savedRecipes) : [];
+    const sessionID = localStorage.getItem("sessionID");
+    if (sessionID) {
+      const savedRecipes = localStorage.getItem(`favRecipes_${sessionID}`);
+      return savedRecipes ? JSON.parse(savedRecipes) : [];
+    }
+    return [];
   });
+
+  // generated a unique ID for every user that visits the app
+  const generatedUniqueID = () => {
+    return Math.random().toString(36).substring(2, 9);
+  };
+
+  useEffect(() => {
+    // persisting the ID in local storage
+    let uniqueID = localStorage.getItem("sessionID");
+    if (!uniqueID) {
+      uniqueID = generatedUniqueID();
+      localStorage.setItem("sessionID", uniqueID);
+    }
+    setUserID(uniqueID);
+  }, []);
 
   const addToFav = () => {
     const Addedrecipe = {
@@ -21,15 +41,25 @@ export function MealCard({ meal }) {
       (favorite) => favorite.ID === Addedrecipe.ID
     );
     if (isInFavorites) {
-      console.log("is in favorites");
+      alert("already in favorites");
     } else if (Favorite_Recipes.push(Addedrecipe)) {
       const updatedList = [...favorites, Addedrecipe];
       setFavorites(updatedList);
-      localStorage.setItem("favRecipes", JSON.stringify(updatedList));
+      if (userID) {
+        localStorage.setItem(
+          `favRecipes_${userID}`,
+          JSON.stringify(updatedList)
+        );
+        console.log(userID);
+      }
+
       toast("added to favorites");
       console.log(favorites);
+      alert("added to favorites");
+    } else {
+      alert("something went wrong");
     }
-    console.log(Addedrecipe);
+    // console.log(Addedrecipe);
   };
   return (
     <>
