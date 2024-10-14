@@ -1,7 +1,36 @@
 import { Link } from "react-router-dom";
 import { HeartOutlined, PlusOutlined } from "@ant-design/icons";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function MealCard({ meal }) {
+  const Favorite_Recipes = [];
+  const [favorites, setFavorites] = useState(() => {
+    const savedRecipes = localStorage.getItem("favRecipes");
+    return savedRecipes ? JSON.parse(savedRecipes) : [];
+  });
+
+  const addToFav = () => {
+    const Addedrecipe = {
+      ID: meal.idMeal,
+      MealImg: meal.strMealThumb,
+      MealName: meal.strMeal,
+    };
+    const isInFavorites = favorites.some(
+      (favorite) => favorite.ID === Addedrecipe.ID
+    );
+    if (isInFavorites) {
+      console.log("is in favorites");
+    } else if (Favorite_Recipes.push(Addedrecipe)) {
+      const updatedList = [...favorites, Addedrecipe];
+      setFavorites(updatedList);
+      localStorage.setItem("favRecipes", JSON.stringify(updatedList));
+      toast("added to favorites");
+      console.log(favorites);
+    }
+    console.log(Addedrecipe);
+  };
   return (
     <>
       <div className="border p4 mt-10 mealImage rounded-2xl card">
@@ -18,8 +47,9 @@ export function MealCard({ meal }) {
           <p className="font-bold text-xl px-5">{meal.strMeal}</p>
           <div className="icons">
             <div title="add to favorites" className="fav">
-              <HeartOutlined className="icon-child" />
+              <HeartOutlined className="icon-child" onClick={addToFav} />
             </div>
+
             <div title="add to bookmark" className="bookmark">
               <PlusOutlined className="icon-child" />
             </div>
@@ -38,6 +68,9 @@ export function MealCard({ meal }) {
             View recipe
           </Link>
         </div>
+        {/* <div>
+          <ToastContainer position="top-center" />
+        </div> */}
 
         {/* <p className="ml-2 italic text-center">
           <span>Category: </span>
