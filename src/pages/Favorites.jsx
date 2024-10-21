@@ -2,28 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Redirect } from "../components/Redirect";
 import { DeleteFilled } from "@ant-design/icons";
+import { useRecipeCollection } from "../hooks/useRecipeCollection";
 
 export function Favorites() {
-  const sessionID = localStorage.getItem("sessionID");
-  const [favorites, setFavorites] = useState(() => {
-    if (sessionID) {
-      const savedRecipes = localStorage.getItem(`favRecipes_${sessionID}`);
-      return savedRecipes ? JSON.parse(savedRecipes) : [];
-    }
-    return [];
-  });
+  const { recipes: favorites, removeRecipe: removeFromFavs } =
+    useRecipeCollection("favRecipes");
 
-  const removeItem = (id) => {
-    // delete a particular recipe from favorites
-    const updateAfterRemove = favorites.filter(
-      (favorite) => favorite.ID !== id
-    );
-    setFavorites(updateAfterRemove);
-    localStorage.setItem(
-      `favRecipes_${sessionID}`,
-      JSON.stringify(updateAfterRemove)
-    );
-  };
   return (
     <>
       <Redirect />
@@ -59,7 +43,7 @@ export function Favorites() {
               <div className="justify-end flex items-center cursor-pointer">
                 <DeleteFilled
                   onClick={() => {
-                    removeItem(favorite.ID);
+                    removeFromFavs(favorite.ID);
                   }}
                 />
               </div>
