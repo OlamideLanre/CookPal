@@ -27,7 +27,7 @@ export function Favorites() {
   return (
     <>
       <Redirect />
-      <div className="container">
+      <div className="container p-2">
         {favorites && favorites.length > 0 ? (
           favorites.map((favorite) => (
             <div

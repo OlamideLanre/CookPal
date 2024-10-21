@@ -59,6 +59,7 @@ function ViewRecipie() {
       <Redirect />
       <div className="container p-10 mx-auto">
         <h1 className="meal font-bold text-3xl">{mealDetails.strMeal}</h1>
+        <p>{mealDetails.strArea}</p>
         {loading ? (
           <div className="text-xl mt-60">
             <LoadingOutlined />
@@ -81,6 +82,14 @@ function ViewRecipie() {
                 <p className="ins text-justify">
                   {mealDetails.strInstructions}
                 </p>
+                <div className="flex">
+                  <h3 className="font-bold text-lg text-start text-yellow-500">
+                    Category:
+                  </h3>
+                  <span className="text-lg font-semibold ml-2 ">
+                    {mealDetails.strCategory}
+                  </span>
+                </div>
               </div>
             </div>
 
