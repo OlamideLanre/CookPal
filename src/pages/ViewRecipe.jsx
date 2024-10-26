@@ -40,12 +40,9 @@ function ViewRecipie() {
     } catch (error) {
       console.log("error fetching: ", error);
       setLoading(false);
-      setError("Ops! Something went wrong. Try again");
+      setError("Something went wrong. Try again");
       if (error.message == "Network Error") {
-        setError(
-          "Ops! something went wrong." +
-            " Check your internet connection and try again!"
-        );
+        setError(" Check your internet connection and try again!");
       }
     }
   };
@@ -64,6 +61,8 @@ function ViewRecipie() {
           <div className="text-xl mt-60">
             <LoadingOutlined />
           </div>
+        ) : errorMess ? (
+          <div className="text-xl mt-52">{errorMess}</div>
         ) : (
           <div className="container">
             <div className="flex gap-7 flex-wrap">
@@ -113,8 +112,6 @@ function ViewRecipie() {
           </div>
         )}
       </div>
-
-      {errorMess && <div className="text-xl mt-52">{errorMess}</div>}
     </>
   );
 }

@@ -12,7 +12,7 @@ export function BookMark() {
     <>
       <Redirect />
       <div className="container p-2">
-        <h1>Bookmarks</h1>
+        <h1 className="font-semibold">Bookmarks: save recipes for later</h1>
         {bookmarks && bookmarks.length > 0 ? (
           bookmarks.map((bookmark) => (
             <div
