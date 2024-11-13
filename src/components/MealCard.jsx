@@ -6,8 +6,23 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRecipeCollection } from "../hooks/useRecipeCollection";
 
 export function MealCard({ meal }) {
-  const { addRecipe: addToFav } = useRecipeCollection("favRecipes");
-  const { addRecipe: addToBookmark } = useRecipeCollection("bookMarks");
+  const { recipes: favorites, addRecipe: addToFav } =
+    useRecipeCollection("favRecipes");
+  const { recipes: bookmarks, addRecipe: addToBookmark } =
+    useRecipeCollection("bookMarks");
+  const [isInFav, setIsInFav] = useState(() => {
+    favorites.some((fav) => fav.ID === meal.idMeal);
+    // bookmarks.some((bk) => bk.ID === meal.idMeal);
+  });
+  const [isInBookmark, setIsInBookmark] = useState(() => {
+    bookmarks.some((bk) => bk.ID === meal.idMeal);
+    // bookmarks.some((bk) => bk.ID === meal.idMeal);
+  });
+
+  useEffect(() => {
+    setIsInFav(favorites.some((favorite) => favorite.ID === meal.idMeal));
+    setIsInBookmark(bookmarks.some((bk) => bk.ID === meal.idMeal));
+  }, [bookmarks, favorites, meal.idMeal]);
 
   const handleAddToFavorites = () => {
     const newFavorite = {
@@ -41,14 +56,30 @@ export function MealCard({ meal }) {
         <div className="flex justify-between">
           <p className="font-bold text-xl px-5">{meal.strMeal}</p>
           <div className="icons">
-            <div title="add to favorites" className="fav">
+            <div
+              title="add to favorites"
+              className="fav"
+              style={
+                isInFav
+                  ? { backgroundColor: "red", color: "white" }
+                  : { backgroundColor: "" }
+              }
+            >
               <HeartOutlined
                 className="icon-child"
                 onClick={handleAddToFavorites}
               />
             </div>
 
-            <div title="add to bookmark" className="bookmark">
+            <div
+              title="add to bookmark"
+              className="bookmark"
+              style={
+                isInBookmark
+                  ? { backgroundColor: "rgb(49, 109, 231)", color: "white" }
+                  : { backgroundColor: "" }
+              }
+            >
               <PlusOutlined
                 className="icon-child"
                 onClick={HandleAddToBookmark}
