@@ -10,13 +10,13 @@ export function MealCard({ meal }) {
     useRecipeCollection("favRecipes");
   const { recipes: bookmarks, addRecipe: addToBookmark } =
     useRecipeCollection("bookMarks");
+
+  // checking is a recipe is in bookmark or fav
   const [isInFav, setIsInFav] = useState(() => {
     favorites.some((fav) => fav.ID === meal.idMeal);
-    // bookmarks.some((bk) => bk.ID === meal.idMeal);
   });
   const [isInBookmark, setIsInBookmark] = useState(() => {
     bookmarks.some((bk) => bk.ID === meal.idMeal);
-    // bookmarks.some((bk) => bk.ID === meal.idMeal);
   });
 
   useEffect(() => {
